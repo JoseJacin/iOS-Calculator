@@ -74,9 +74,12 @@
 			isa = PBXGroup;
 			children = (
 				6E5D81142305F5B000EA771C /* AppDelegate.swift */,
+				6E5D81372305FC4D00EA771C /* View */,
+				6E5D81362305FC4500EA771C /* Controller */,
+				6E5D81352305FC3C00EA771C /* Model */,
+				6E5D81382305FC6800EA771C /* Util */,
+				6E5D81392305FC7A00EA771C /* Supporting Files */,
 				6E5D811B2305F5B100EA771C /* Assets.xcassets */,
-				6E5D811D2305F5B100EA771C /* LaunchScreen.storyboard */,
-				6E5D81202305F5B100EA771C /* Info.plist */,
 			);
 			path = "iOS-Calculator";
 			sourceTree = "<group>";
@@ -88,6 +91,51 @@
 				6E5D812B2305F5B100EA771C /* Info.plist */,
 			);
 			path = "iOS-CalculatorTests";
+			sourceTree = "<group>";
+		};
+		6E5D81352305FC3C00EA771C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6E5D81362305FC4500EA771C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6E5D81372305FC4D00EA771C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6E5D813A2305FCB800EA771C /* Launch */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6E5D81382305FC6800EA771C /* Util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		6E5D81392305FC7A00EA771C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6E5D81202305F5B100EA771C /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6E5D813A2305FCB800EA771C /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				6E5D811D2305F5B100EA771C /* LaunchScreen.storyboard */,
+			);
+			path = Launch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,7 +394,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KHHTWY4HT3;
-				INFOPLIST_FILE = "iOS-Calculator/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/iOS-Calculator/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -365,7 +413,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KHHTWY4HT3;
-				INFOPLIST_FILE = "iOS-Calculator/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/iOS-Calculator/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
