@@ -13,6 +13,7 @@
 		6E5D812A2305F5B100EA771C /* iOS_CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5D81292305F5B100EA771C /* iOS_CalculatorTests.swift */; };
 		6E5D8140230600C500EA771C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5D813E230600C500EA771C /* HomeViewController.swift */; };
 		6E5D8141230600C500EA771C /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E5D813F230600C500EA771C /* HomeViewController.xib */; };
+		6EB0E34C230617E9001CE440 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB0E34B230617E9001CE440 /* UIButtonExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		6E5D812B2305F5B100EA771C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E5D813E230600C500EA771C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6E5D813F230600C500EA771C /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		6EB0E34B230617E9001CE440 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIButtonExtension.swift; path = "iOS-Calculator/View/Home/UIButtonExtension.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 		6E5D81382305FC6800EA771C /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				6EB0E34B230617E9001CE440 /* UIButtonExtension.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			files = (
 				6E5D81152305F5B000EA771C /* AppDelegate.swift in Sources */,
 				6E5D8140230600C500EA771C /* HomeViewController.swift in Sources */,
+				6EB0E34C230617E9001CE440 /* UIButtonExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

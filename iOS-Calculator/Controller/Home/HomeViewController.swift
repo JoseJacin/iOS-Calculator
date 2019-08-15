@@ -25,6 +25,7 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var number7: UIButton!
     @IBOutlet weak var number8: UIButton!
     @IBOutlet weak var number9: UIButton!
+    @IBOutlet weak var numberDecimal: UIButton!
     
     // Operators
     @IBOutlet weak var operatorAC: UIButton!
@@ -48,32 +49,68 @@ final class HomeViewController: UIViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // UI - Preparación de la parte visual
+        // Se modifica el aspecto de los botones
+        // Numbers
+        number0.round()
+        number1.round()
+        number2.round()
+        number3.round()
+        number4.round()
+        number5.round()
+        number6.round()
+        number7.round()
+        number8.round()
+        number9.round()
+        numberDecimal.round()
+        
+        // Operators
+        operatorAC.round()
+        operatorPlusMinus.round()
+        OperatorPercent.round()
+        operatorResult.round()
+        operatorAddition.round()
+        operatorSubstraction.round()
+        operatorMultiplication.round()
+        operatorDivision.round()
+        
+        // Se modifican las animaciones de los botones
     }
     
     // MARK: - Button Actions
     //Numbers
     @IBAction func numberAction(_ sender: UIButton) {
+        sender.shine()
         print(sender.tag)
     }
     
     //Operators
-    @IBAction func operatorACAction(_ sender: Any) {
+    @IBAction func operatorACAction(_ sender: UIButton) {
+        sender.shine()
     }
-    @IBAction func operatorPlusMinusAction(_ sender: Any) {
+    @IBAction func operatorPlusMinusAction(_ sender: UIButton) {
+        sender.shine()
     }
-    @IBAction func operatorPercentAction(_ sender: Any) {
+    @IBAction func operatorPercentAction(_ sender: UIButton) {
+        sender.shine()
     }
-    @IBAction func operatorResultAction(_ sender: Any) {
+    @IBAction func operatorResultAction(_ sender: UIButton) {
+        sender.shine()
     }
-    @IBAction func operatorAdditionAction(_ sender: Any) {
+    @IBAction func operatorAdditionAction(_ sender: UIButton) {
+        sender.shine()
     }
-    @IBAction func operatorSubstractionAction(_ sender: Any) {
+    @IBAction func operatorSubstractionAction(_ sender: UIButton) {
+        sender.shine()
     }
-    @IBAction func operatorMultiplicationAction(_ sender: Any) {
+    @IBAction func operatorMultiplicationAction(_ sender: UIButton) {
+        sender.shine()
     }
-    @IBAction func operatorDivisionAction(_ sender: Any) {
+    @IBAction func operatorDivisionAction(_ sender: UIButton) {
+        sender.shine()
     }
-    @IBAction func operatorDecimalAction(_ sender: Any) {
+    @IBAction func operatorDecimalAction(_ sender: UIButton) {
+        sender.shine()
     }
-    
 }

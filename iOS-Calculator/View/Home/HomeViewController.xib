@@ -23,6 +23,7 @@
                 <outlet property="number7" destination="rTM-Zr-Vq4" id="F6L-1R-TtQ"/>
                 <outlet property="number8" destination="GTq-jC-BAZ" id="4aS-il-hQK"/>
                 <outlet property="number9" destination="1Lg-aw-Erg" id="DhX-sR-uol"/>
+                <outlet property="numberDecimal" destination="Khg-bl-fAL" id="eX6-fx-dRS"/>
                 <outlet property="operatorAC" destination="uXi-Y7-QjJ" id="ISW-NU-rji"/>
                 <outlet property="operatorAddition" destination="BCW-eS-8aE" id="4vy-dP-he9"/>
                 <outlet property="operatorDivision" destination="zOh-CS-HXn" id="xfo-QX-2Y8"/>
