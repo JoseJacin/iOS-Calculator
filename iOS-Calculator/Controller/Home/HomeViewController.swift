@@ -113,6 +113,18 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Se establece el caracter para el botón numberDecimal
+        numberDecimal.setTitle(kDecimalSeparator, for: .normal)
+        
+        // Se recupera el último valor guardado
+        total = UserDefaults.standard.double(forKey: kTotal)
+        
+        result()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         // UI - Preparación de la parte visual
         // Se modifica el aspecto de los botones
         // Numbers
@@ -137,14 +149,6 @@ final class HomeViewController: UIViewController {
         operatorSubstraction.round()
         operatorMultiplication.round()
         operatorDivision.round()
-        
-        // Se establece el caracter para el botón numberDecimal
-        numberDecimal.setTitle(kDecimalSeparator, for: .normal)
-        
-        // Se recupera el último valor guardado
-        total = UserDefaults.standard.double(forKey: kTotal)
-        
-        result()
     }
     
     // MARK: - Button Actions
