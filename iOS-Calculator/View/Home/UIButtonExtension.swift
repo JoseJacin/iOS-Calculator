@@ -8,6 +8,9 @@
 
 import UIKit
 
+// MARK: - Properties
+private let orange = UIColor(red: 254/255, green: 148/255, blue: 0/255, alpha: 1)
+
 // MARK: - UIButton Extension
 // Clase que extiende toda la funcionalidad de los botones
 extension UIButton {
@@ -48,5 +51,11 @@ extension UIButton {
                 self.transform = .identity
             })
         }
+    }
+    
+    // Seleccionado
+    func selected(_ selected: Bool) {
+        backgroundColor = selected ? .white : orange
+        setTitleColor(selected ? .orange : .white, for: .normal)
     }
 }

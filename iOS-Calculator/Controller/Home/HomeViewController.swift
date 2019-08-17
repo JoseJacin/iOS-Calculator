@@ -47,8 +47,6 @@ final class HomeViewController: UIViewController {
     // MARK: - Constants
     private let kDecimalSeparator = Locale.current.decimalSeparator!    // Separador decimal dependiendo de la localización del dispositivo
     private let kMaxLenght = 9                                          // Longitud máxima permitida
-    private let kMaxValue = 999999999                                   // Valor máximo permitido
-    private let kMinValue = 0.00000001                                  // Valor mínimo permitido
     
     private enum OperationType {
         case none, addiction, substraction, multiplication, division, percent
@@ -61,6 +59,21 @@ final class HomeViewController: UIViewController {
         formatter.groupingSeparator = ""                        // Separador de grupo. Separador cada 3 dígitos
         formatter.decimalSeparator = locale.decimalSeparator    // Separador decimal
         formatter.numberStyle = .decimal                        // Se indica que el formateador acepte decimales
+        formatter.maximumIntegerDigits = 100                    // Número máximo de dígitos para un entero
+        formatter.minimumIntegerDigits = 0                      // Número mínimo de dígitos para un entero
+        formatter.maximumFractionDigits = 100                   // Número máximo de dígitos para un decimal
+        return formatter
+    }()
+    
+    // Formateo de valores auxiliar para el Total
+    private let auxTotalFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = ""                        // Separador de grupo. Separador cada 3 dígitos
+        formatter.decimalSeparator = ""                         // Separador decimal
+        formatter.numberStyle = .decimal                        // Se indica que el formateador acepte decimales
+        formatter.maximumIntegerDigits = 100                    // Número máximo de dígitos para un entero
+        formatter.minimumIntegerDigits = 0                      // Número mínimo de dígitos para un entero
+        formatter.maximumFractionDigits = 100                   // Número máximo de dígitos para un decimal
         return formatter
     }()
     
@@ -139,13 +152,15 @@ final class HomeViewController: UIViewController {
         operatorAC.setTitle("C", for: .normal)
         
         // Se obtiene el valor actual sin separadores
-        var currentTemp = auxFormatter.string(from: NSNumber(value: temp))!
+        var currentTemp = auxTotalFormatter.string(from: NSNumber(value: temp))!
         
         // Se comprueba si no se está realizando ninguna operación y si el tamaño máxio del valor actual es menor que el tamaño máximo permitido
         // Se comprueba si lo que se está escribiendo es susceptible de operar
         if !operating && currentTemp.count >= kMaxLenght {
             return
         }
+        
+        currentTemp = auxFormatter.string(from: NSNumber(value: temp))!
         
         // Si se ha seleccionado una operación
         if operating {
@@ -166,8 +181,12 @@ final class HomeViewController: UIViewController {
         temp = Double(currentTemp + String(number))!
         resultLabel.text = printFormatter.string(from: NSNumber(value: temp))
         
+        // Se indica visualmente el botón seleccionado
+        selectVisualOperation()
+        
         // Se modifican las animaciones de los botones
         sender.shine()
+        
         print(sender.tag)
     }
     
@@ -220,8 +239,11 @@ final class HomeViewController: UIViewController {
     @IBAction func operatorAdditionAction(_ sender: UIButton) {
         // Se ejecuta la suma
         
-        // Se ejecuta el resultado
-        result()
+        // Se consulta si se está ejecutando una operación
+        if operation != .none {
+            // Se ejecuta el resultado
+            result()
+        }
         
         // Se establece que se está ejecutando una operación
         operating = true
@@ -229,14 +251,20 @@ final class HomeViewController: UIViewController {
         // Se establece el tipo de operación
         operation = .addiction
         
+        // Se indica visualmente el botón seleccionado
+        sender.selected(true)
+        
         // Se modifican las animaciones de los botones
         sender.shine()
     }
     @IBAction func operatorSubstractionAction(_ sender: UIButton) {
         // Se ejecuta la resta
         
-        // Se ejecuta el resultado
-        result()
+        // Se consulta si se está ejecutando una operación
+        if operation != .none {
+            // Se ejecuta el resultado
+            result()
+        }
         
         // Se establece que se está ejecutando una operación
         operating = true
@@ -244,14 +272,20 @@ final class HomeViewController: UIViewController {
         // Se establece el tipo de operación
         operation = .substraction
         
+        // Se indica visualmente el botón seleccionado
+        sender.selected(true)
+        
         // Se modifican las animaciones de los botones
         sender.shine()
     }
     @IBAction func operatorMultiplicationAction(_ sender: UIButton) {
         // Se ejecuta la multiplicación
         
-        // Se ejecuta el resultado
-        result()
+        // Se consulta si se está ejecutando una operación
+        if operation != .none {
+            // Se ejecuta el resultado
+            result()
+        }
         
         // Se establece que se está ejecutando una operación
         operating = true
@@ -259,20 +293,29 @@ final class HomeViewController: UIViewController {
         // Se establece el tipo de operación
         operation = .multiplication
         
+        // Se indica visualmente el botón seleccionado
+        sender.selected(true)
+        
         // Se modifican las animaciones de los botones
         sender.shine()
     }
     @IBAction func operatorDivisionAction(_ sender: UIButton) {
         // Se ejecuta la división
         
-        // Se ejecuta el resultado
-        result()
+        // Se consulta si se está ejecutando una operación
+        if operation != .none {
+            // Se ejecuta el resultado
+            result()
+        }
         
         // Se establece que se está ejecutando una operación
         operating = true
         
         // Se establece el tipo de operación
         operation = .division
+        
+        // Se indica visualmente el botón seleccionado
+        sender.selected(true)
         
         // Se modifican las animaciones de los botones
         sender.shine()
@@ -281,7 +324,7 @@ final class HomeViewController: UIViewController {
         // Se ejecuta la funcionalidad del decimal
         
         // Se obtiene el valor actual sin separadores
-        let currentTemp = auxFormatter.string(from: NSNumber(value: temp))!
+        let currentTemp = auxTotalFormatter.string(from: NSNumber(value: temp))!
         
         // Se comprueba si no se está realizando ninguna operación y si el tamaño máxio del valor actual es menor que el tamaño máximo permitido
         // Se comprueba si lo que se está escribiendo es susceptible de operar
@@ -294,6 +337,9 @@ final class HomeViewController: UIViewController {
         
         // Se establece que hay un decimal
         decimal = true
+        
+        // Se indica visualmente el botón seleccionado
+        selectVisualOperation()
         
         // Se modifican las animaciones de los botones
         sender.shine()
@@ -352,10 +398,62 @@ final class HomeViewController: UIViewController {
         }
         
         // Formateo en pantalla
-        if Int(total) <= kMaxValue || total >= kMinValue {
+        if let currentTotal = auxTotalFormatter.string(from: NSNumber(value: total)), currentTotal.count > kMaxLenght {
+            resultLabel.text = printScientificFormatter.string(from: NSNumber(value: total))
+        } else {
             resultLabel.text = printFormatter.string(from: NSNumber(value: total))
+
         }
         
+        operation = .none
+        
+        // Se indica visualmente el botón seleccionado
+        selectVisualOperation()
+        
         print("TOTAL: \(total)")
+    }
+    
+    // Muestra de forma visual la operación seleccionada
+    private func selectVisualOperation() {
+        if !operating {
+            // No se está operando
+            operatorAddition.selected(false)
+            operatorSubstraction.selected(false)
+            operatorMultiplication.selected(false)
+            operatorDivision.selected(false)
+        } else {
+            switch operation {
+            case .none, .percent:
+                operatorAddition.selected(false)
+                operatorSubstraction.selected(false)
+                operatorMultiplication.selected(false)
+                operatorDivision.selected(false)
+                break
+            case .addiction:
+                operatorAddition.selected(true)
+                operatorSubstraction.selected(false)
+                operatorMultiplication.selected(false)
+                operatorDivision.selected(false)
+                break
+            case .substraction:
+                operatorAddition.selected(false)
+                operatorSubstraction.selected(true)
+                operatorMultiplication.selected(false)
+                operatorDivision.selected(false)
+                break
+            case .multiplication:
+                operatorAddition.selected(false)
+                operatorSubstraction.selected(false)
+                operatorMultiplication.selected(true)
+                operatorDivision.selected(false)
+                break
+            case .division:
+                operatorAddition.selected(false)
+                operatorSubstraction.selected(false)
+                operatorMultiplication.selected(false)
+                operatorDivision.selected(true)
+                break
+            }
+        }
     }
 }
