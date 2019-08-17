@@ -47,6 +47,7 @@ final class HomeViewController: UIViewController {
     // MARK: - Constants
     private let kDecimalSeparator = Locale.current.decimalSeparator!    // Separador decimal dependiendo de la localización del dispositivo
     private let kMaxLenght = 9                                          // Longitud máxima permitida
+    private let kTotal = "total"                                        // Último valor calculado
     
     private enum OperationType {
         case none, addiction, substraction, multiplication, division, percent
@@ -139,6 +140,9 @@ final class HomeViewController: UIViewController {
         
         // Se establece el caracter para el botón numberDecimal
         numberDecimal.setTitle(kDecimalSeparator, for: .normal)
+        
+        // Se recupera el último valor guardado
+        total = UserDefaults.standard.double(forKey: kTotal)
         
         result()
     }
@@ -409,6 +413,9 @@ final class HomeViewController: UIViewController {
         
         // Se indica visualmente el botón seleccionado
         selectVisualOperation()
+        
+        // Se guarda el último valor de Total
+        UserDefaults.standard.set(total, forKey: kTotal)
         
         print("TOTAL: \(total)")
     }
